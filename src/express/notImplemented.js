@@ -1,4 +1,4 @@
-export default function notImplemented (req, res) {
+export default function notImplemented(req, res) {
   const body = {
     path: req.originalUrl,
     status: 'not-implemented',
