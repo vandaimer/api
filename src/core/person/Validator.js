@@ -2,10 +2,19 @@ import Joi from 'joi';
 
 
 export default class Validator {
-  static post (data) {
-    const schema = Joi.object().keys({
+  static genericSchema() {
+    return Joi.object().keys({
       name: Joi.string(),
     }).min(1);
+  }
+
+  static post (data) {
+    const schema = Validator.genericSchema();
+    return Validator.validate(schema, data);
+  }
+
+  static put (data) {
+    const schema = Validator.genericSchema();
     return Validator.validate(schema, data);
   }
 
