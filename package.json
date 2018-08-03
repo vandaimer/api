@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bunyan": "^1.8.12",
     "nodemon": "^1.18.3"
   }
 }
