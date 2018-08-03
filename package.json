@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js --exec babel-node | bunyan"
+    "dev": "nodemon src/server.js --exec babel-node | bunyan",
+    "build": "babel src --ignore __tests__,__mocks__ -d dist",
     "serve": "node dist/server.js"
   },
   "author": "",
