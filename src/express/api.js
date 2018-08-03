@@ -5,6 +5,7 @@ import helmet from 'helmet';
 
 import healthCheck from './healthCheck';
 import notImplemented from './notImplemented';
+import routes from './routes';
 
 export default function api(port) {
   return new Promise((resolve, reject) => {
@@ -24,6 +25,7 @@ export default function api(port) {
     server.use(bodyParser.json());
 
     server.use('/healthz', healthCheck);
+    server.use('/api', routes);
     server.use(cors());
     server.all('*', notImplemented);
     server.listen(port, callback);
