@@ -10,6 +10,10 @@ const configs = {
     port: parseInt(process.env.DB_PORT, 10) || 5432,
     user: process.env.DB_USER || 'postgres',
   },
+  migrations: {
+    tableName: 'migrations',
+    directory: path.join(__dirname, '../knex/migrations'),
+  },
   debug: false,
 };
 
