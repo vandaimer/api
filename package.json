@@ -34,7 +34,8 @@
     "bunyan": "^1.8.12",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "helmet": "^3.13.0"
+    "helmet": "^3.13.0",
+    "joi": "^13.5.2"
   },
   "prettier": {
     "singleQuote": true,
