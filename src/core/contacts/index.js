@@ -4,6 +4,6 @@ import list from './list';
 
 const router = Router();
 
-router.get('/', list);
+router.get('/contacts/', list);
 
 export default router;
