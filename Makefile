@@ -1,13 +1,22 @@
 D=docker
+DC=docker-compose
 IMAGE=apicontacts
 DIR=$(CURDIR)
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_DB=serverapp
 DB_HOST=db
+Y=yarn
 
 
 all:
+	$(Y)
+	$(DC) up
+
+down:
+	$(DC) down
+
+prod:
 	$(MAKE) build
 	$(MAKE) run
 
