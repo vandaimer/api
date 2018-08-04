@@ -46,23 +46,6 @@ class Person {
 
     await remove(Person.tableName, id);
   }
-
-  static async update(req, res) {
-    const {
-      body,
-      params: { id },
-    } = req;
-
-    const { error } = PersonValidator.put(body);
-
-    if (error) {
-      return res.status(400).json({ error });
-    }
-
-    const updated = await update(Person.tableName, id, body);
-
-    return res.status(201).json({ updated });
-  }
 }
 
 export default Person;
