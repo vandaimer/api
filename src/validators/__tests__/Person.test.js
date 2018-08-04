@@ -1,6 +1,5 @@
 import Person from '../Person';
 
-
 describe('validators.Person', () => {
   it('should return a generic schema not undefined', () => {
     expect(Person.genericSchema()).not.toBeUndefined();
