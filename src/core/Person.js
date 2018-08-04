@@ -1,7 +1,9 @@
 import { PersonValidator } from '../validators';
 import { update, list, remove, create, createBatch } from '../queries';
 
+
 class Person {
+  static tableName = 'person';
 
   static async create(req, res) {
     const { body } = req;
@@ -13,7 +15,7 @@ class Person {
     }
 
     const { contacts: durtyContacts, ...person } = value;
-    const created = await create('person', person);
+    const created = await create(Person.tableName, person);
     const { id } = created;
 
     const contacts = durtyContacts.map(contact => ({ ...contact, personId: id }));
@@ -24,7 +26,7 @@ class Person {
   }
 
   static async list(req, res) {
-    let persons = await list('person', {});
+    let persons = await list(Person.tableName, {});
 
     persons = persons.map(async person => {
       const { id } = person;
@@ -40,7 +42,7 @@ class Person {
   static async remove(req, res) {
     const { params: { id } } = req;
 
-    await remove('person', id);
+    await remove(Person.tableName, id);
 
     return res.status(204).json();
   }
@@ -54,7 +56,7 @@ class Person {
       return res.status(400).send({ error });
     }
 
-    const updated = await update('person', id, body);
+    const updated = await update(Person.tableName, id, body);
 
     return res.status(201).json({ updated });
   }
