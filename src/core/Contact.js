@@ -1,4 +1,4 @@
-import { list } from '../queries';
+import { list, createBatch } from '../queries';
 
 
 class Contact {
@@ -6,6 +6,11 @@ class Contact {
 
   static async listByPersonId(personId) {
     return list(Contact.tableName, { personId });
+  }
+
+  static async saveBatch(personId, durtyContacts) {
+    const contacts = durtyContacts.map(contact => ({ ...contact, personId }));
+    await createBatch(Contact.tableName, contacts);
   }
 }
 
