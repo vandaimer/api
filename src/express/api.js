@@ -24,9 +24,9 @@ export default function api(port) {
     server.use(helmet());
     server.use(bodyParser.json());
 
+    server.use(cors());
     server.use('/healthz', healthCheck);
     server.use('/api', routes);
-    server.use(cors());
     server.all('*', notImplemented);
     server.listen(port, callback);
   });
