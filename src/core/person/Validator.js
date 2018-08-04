@@ -5,6 +5,12 @@ export default class Validator {
   static genericSchema() {
     return Joi.object().keys({
       name: Joi.string(),
+      contacts: Joi.array().items(
+        Joi.object().keys({
+          service: Joi.string().required(),
+          contact: Joi.string().required(),
+        }).min(1),
+      ).min(1),
     }).min(1);
   }
 
