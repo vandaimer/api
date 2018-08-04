@@ -5,13 +5,13 @@ import { update, list, remove, create } from '../queries';
 class Person {
   static tableName = 'person';
 
-  static async create(req, res) {
+  static async create(req) {
     const { body } = req;
 
     const { error, value } = PersonValidator.post(body);
 
     if (error) {
-      return res.status(400).send({ error });
+      throw new Error(error);
     }
 
     const { contacts, ...person } = value;
@@ -20,10 +20,10 @@ class Person {
 
     await Contact.saveBatch(id, contacts);
 
-    return res.status(201).json({ created });
+    return { created };
   }
 
-  static async list(req, res) {
+  static async list() {
     let persons = await list(Person.tableName, {});
 
     persons = persons.map(async person => {
@@ -34,10 +34,10 @@ class Person {
 
     persons = await Promise.all(persons);
 
-    return res.json({ persons });
+    return persons;
   }
 
-  static async remove(req, res) {
+  static async remove(req) {
     const {
       params: { id },
     } = req;
@@ -45,8 +45,6 @@ class Person {
     await Contact.removeByPersonId(id);
 
     await remove(Person.tableName, id);
-
-    return res.status(204).json();
   }
 
   static async update(req, res) {
@@ -58,7 +56,7 @@ class Person {
     const { error } = PersonValidator.put(body);
 
     if (error) {
-      return res.status(400).send({ error });
+      return res.status(400).json({ error });
     }
 
     const updated = await update(Person.tableName, id, body);
