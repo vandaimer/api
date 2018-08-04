@@ -4,7 +4,7 @@ export default class Validator {
   static genericSchema() {
     return Joi.object()
       .keys({
-        name: Joi.string(),
+        name: Joi.string().required(),
         contacts: Joi.array()
           .items(
             Joi.object()
