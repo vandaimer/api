@@ -1,4 +1,4 @@
-import { create } from '../../queries';
+import { create, createBatch } from '../../queries';
 import Validator from './Validator';
 
 
@@ -11,7 +11,13 @@ export default async function (req, res) {
     return res.status(400).send({ error });
   }
 
-	const created = await create('person', body);
+  const { contacts: durtyContacts, ...person } = body;
+	const created = await create('person', person);
+  const { id } = created;
+
+  const contacts = durtyContacts.map(contact => ({ ...contact, personId: id }));
+
+  await createBatch('contact', contacts);
 
   return res.status(201).json({ created });
 };
