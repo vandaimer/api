@@ -9,7 +9,10 @@
     "serve": "node dist/server.js",
     "start": "yarn build && yarn serve",
     "lint": "eslint .",
-    "prettier": "prettier --write src/**/*.js"
+    "prettier": "prettier --write src/**/*.js",
+    "test": "jest --forceExit",
+    "coverage": "jest --coverage --forceExit",
+    "dev:coverage": "jest --watch --coverage"
   },
   "author": "",
   "license": "ISC",
