@@ -5,7 +5,7 @@ import helmet from 'helmet';
 
 import healthCheck from './healthCheck';
 import notImplemented from './notImplemented';
-import routes from './routes';
+import routes from '../routes';
 
 export default function api(port) {
   return new Promise((resolve, reject) => {
