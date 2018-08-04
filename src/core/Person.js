@@ -41,6 +41,8 @@ class Person {
   static async remove(req, res) {
     const { params: { id } } = req;
 
+    await Contact.removeByPersonId(id);
+
     await remove(Person.tableName, id);
 
     return res.status(204).json();
