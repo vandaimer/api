@@ -2,7 +2,6 @@ import Contact from './Contact';
 import { PersonValidator } from '../validators';
 import { update, list, remove, create } from '../queries';
 
-
 class Person {
   static tableName = 'person';
 
@@ -39,7 +38,9 @@ class Person {
   }
 
   static async remove(req, res) {
-    const { params: { id } } = req;
+    const {
+      params: { id },
+    } = req;
 
     await Contact.removeByPersonId(id);
 
@@ -49,7 +50,10 @@ class Person {
   }
 
   static async update(req, res) {
-    const { body, params: { id } } = req;
+    const {
+      body,
+      params: { id },
+    } = req;
 
     const { error } = PersonValidator.put(body);
 

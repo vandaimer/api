@@ -1,6 +1,5 @@
 import { list, createBatch, removeWhere } from '../queries';
 
-
 class Contact {
   static tableName = 'contact';
 
