@@ -1,4 +1,4 @@
-import { list, createBatch } from '../queries';
+import { list, createBatch, removeWhere } from '../queries';
 
 
 class Contact {
@@ -10,7 +10,11 @@ class Contact {
 
   static async saveBatch(personId, durtyContacts) {
     const contacts = durtyContacts.map(contact => ({ ...contact, personId }));
-    await createBatch(Contact.tableName, contacts);
+    return createBatch(Contact.tableName, contacts);
+  }
+
+  static async removeByPersonId(personId) {
+    return removeWhere(Contact.tableName, { personId });
   }
 }
 
