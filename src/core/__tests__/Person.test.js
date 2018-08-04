@@ -1,7 +1,7 @@
 import Person from '../Person';
 import Contact from '../Contact';
 import { PersonValidator } from '../../validators';
-import { list, create, remove, createBatch, removeWhere } from '../../queries';
+import { list, create, remove } from '../../queries';
 
 jest.mock('../../queries');
 jest.mock('../../validators');
@@ -35,17 +35,17 @@ describe('core.Person', () => {
       name,
     });
 
-    const req = { body: { name: '', } };
+    const req = { body: { name: '' } };
     const created = await Person.create(req);
 
     expect(created).toEqual({ created: { name, id } });
   });
 
   it('should the list of person', async () => {
-    const contacts = [ { 'service': 'twitter', 'contact': '@@' } ];
+    const contacts = [{ service: 'twitter', contact: '@@' }];
     const person = { id: 1, name: '', contacts };
 
-    list.mockReturnValueOnce([ person ]);
+    list.mockReturnValueOnce([person]);
     Contact.listByPersonId.mockReturnValueOnce(contacts);
 
     const personList = await Person.list();
@@ -55,9 +55,8 @@ describe('core.Person', () => {
 
   it('should remove a person', async () => {
     const id = 1;
-    await Person.remove({ params: { id  }});
+    await Person.remove({ params: { id } });
 
     expect(remove).toBeCalledWith(Person.tableName, id);
   });
-
 });
