@@ -1,6 +1,6 @@
 import Contact from './Contact';
 import { PersonValidator } from '../validators';
-import { update, list, remove, create, createBatch } from '../queries';
+import { update, list, remove, create } from '../queries';
 
 
 class Person {
@@ -15,13 +15,11 @@ class Person {
       return res.status(400).send({ error });
     }
 
-    const { contacts: durtyContacts, ...person } = value;
+    const { contacts, ...person } = value;
     const created = await create(Person.tableName, person);
     const { id } = created;
 
-    const contacts = durtyContacts.map(contact => ({ ...contact, personId: id }));
-
-    await createBatch('contact', contacts);
+    await Contact.saveBatch(id, contacts);
 
     return res.status(201).json({ created });
   }
