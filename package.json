@@ -12,7 +12,8 @@
     "prettier": "prettier --write src/**/*.js",
     "test": "jest --forceExit",
     "coverage": "jest --coverage --forceExit",
-    "dev:coverage": "jest --watch --coverage"
+    "dev:coverage": "jest --watch --coverage",
+    "precommit": "lint-staged && npm test"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "jest": "^22.4.3",
+    "lint-staged": "^7.2.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.0"
   },
@@ -40,9 +42,17 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
+    "husky": "^0.14.3",
     "joi": "^13.5.2",
     "knex": "^0.15.2",
     "pg": "^7.4.3"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write",
+      "git add"
+    ]
   },
   "prettier": {
     "singleQuote": true,
