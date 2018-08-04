@@ -1,3 +1,4 @@
+import Contact from './Contact';
 import { PersonValidator } from '../validators';
 import { update, list, remove, create, createBatch } from '../queries';
 
@@ -30,7 +31,7 @@ class Person {
 
     persons = persons.map(async person => {
       const { id } = person;
-      const contacts = await list('contact', { personId: id });
+      const contacts = await Contact.listByPersonId(id);
       return { ...person, contacts };
     });
 
