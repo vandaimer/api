@@ -6,13 +6,13 @@ class Person {
   static async create(req, res) {
     const { body } = req;
 
-    const { error } = PersonValidator.post(body);
+    const { error, value } = PersonValidator.post(body);
 
     if (error) {
       return res.status(400).send({ error });
     }
 
-    const { contacts: durtyContacts, ...person } = body;
+    const { contacts: durtyContacts, ...person } = value;
     const created = await create('person', person);
     const { id } = created;
 
