@@ -15,6 +15,11 @@ class Contact {
   static async removeByPersonId(personId) {
     return removeWhere(Contact.tableName, { personId });
   }
+
+  static async updateByPersonId(personId, durtyContacts) {
+    await Contact.removeByPersonId(personId);
+    await Contact.saveBatch(personId, durtyContacts);
+  }
 }
 
 export default Contact;
