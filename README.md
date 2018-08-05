@@ -16,32 +16,32 @@
 - ```POST /api/person```
    - Exemplo de payload
 ```json
-	{
-		"name": "Luiz Filipe",
-		"contacts": [
-			{
-				"service": "facebook",
-				"contact": "luizfilipemoresco"
-			}
-		]
-	}
+{
+  "name": "Luiz Filipe",
+  "contacts": [
+    {
+      "service": "facebook",
+      "contact": "luizfilipemoresco"
+    }
+  ]
+}
 ```
 - ```PUT /api/person([0-9]+)```
    - Exemplo de payload
 ```json
-	{
-		"name": "Luiz Filipe",
-		"contacts": [
-			{
-				"service": "facebook",
-				"contact": "luizfilipemoresco"
-			},
-			{
-				"service": "phone",
-				"contact": "48 9 96**-5****"
-			}
-		]
-	}
+{
+  "name": "Luiz Filipe",
+  "contacts": [
+    {
+      "service": "facebook",
+      "contact": "luizfilipemoresco"
+    },
+    {
+      "service": "phone",
+      "contact": "48 9 96**-5****"
+    }
+  ]
+}
 ```
 - ```DELETE /api/person/([0-9]+)```
 
