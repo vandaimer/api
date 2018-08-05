@@ -51,10 +51,6 @@
 # Como executar em ambiente de produção
 - Rodar o comando ```make prod``` e irá iniciar o docker com postgres e a aplicação
 
-# Como executar com docker
-- Rodar ```make``` para fazer o build da imagem.
-- Rodar ```make run string='string_a_ser_validada'``` para fazer o build da imagem.
-
 # Rodar os teste
 - Rodar ```yarn``` para instalar as depêndencias
 - Rodar ```yarn test``` para executar todos os testes
