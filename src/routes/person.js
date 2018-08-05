@@ -31,4 +31,13 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.put('/:id([0-9]+)', async (req, res) => {
+  try {
+    const updated = await Person.update(req);
+    return res.status(200).json(updated);
+  } catch ({ message }) {
+    return res.status(400).json({ message });
+  }
+});
+
 export default router;
