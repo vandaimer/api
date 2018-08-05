@@ -5,6 +5,26 @@ import { update, list, remove, create } from '../queries';
 class Person {
   static tableName = 'person';
 
+  static async update(req) {
+    const {
+      body,
+      params: { id },
+    } = req;
+
+    const { error, value } = PersonValidator.put(body);
+
+    if (error) {
+      throw new Error(error);
+    }
+
+    const { contacts, ...person } = value;
+    const updated = await update(Person.tableName, id, person);
+
+    await Contact.updateByPersonId(id, contacts);
+
+    return { updated };
+  }
+
   static async create(req) {
     const { body } = req;
 
