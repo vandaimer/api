@@ -49,7 +49,7 @@
 - Rodar o comando ```make``` e irá usar docker-compose para iniciar o postgres e a aplicação em modo de desenvolvimento
 
 # Como executar em ambiente de produção
-- Rodar o comando ```make prod``` e irá iniciar o docker com postgres e a aplicação em modo de desenvolvimento
+- Rodar o comando ```make prod``` e irá iniciar o docker com postgres e a aplicação
 
 # Como executar com docker
 - Rodar ```make``` para fazer o build da imagem.
