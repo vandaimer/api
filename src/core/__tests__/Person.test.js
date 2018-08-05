@@ -1,18 +1,23 @@
 import Person from '../Person';
 import Contact from '../Contact';
 import { PersonValidator } from '../../validators';
-import { list, create, remove } from '../../queries';
+import { list, create, remove, update } from '../../queries';
 
 jest.mock('../../queries');
 jest.mock('../../validators');
 jest.mock('../Contact');
 
 describe('core.Person', () => {
+  const id = 1;
+  const name = '';
+  const contacts = [{ service: 'twitter', contact: '@@' }];
+  const person = { id, name: '', contacts };
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should throw error if payload is invalid', async () => {
+  it('should throw error if post payload is invalid', async () => {
     const error = 'An Error';
     PersonValidator.post.mockReturnValueOnce({
       error,
@@ -23,8 +28,6 @@ describe('core.Person', () => {
   });
 
   it('should return the new person created', async () => {
-    const id = 1;
-    const name = '';
     PersonValidator.post.mockReturnValueOnce({
       error: undefined,
       value: '',
@@ -42,9 +45,6 @@ describe('core.Person', () => {
   });
 
   it('should the list of person', async () => {
-    const contacts = [{ service: 'twitter', contact: '@@' }];
-    const person = { id: 1, name: '', contacts };
-
     list.mockReturnValueOnce([person]);
     Contact.listByPersonId.mockReturnValueOnce(contacts);
 
@@ -54,9 +54,29 @@ describe('core.Person', () => {
   });
 
   it('should remove a person', async () => {
-    const id = 1;
     await Person.remove({ params: { id } });
 
     expect(remove).toBeCalledWith(Person.tableName, id);
+  });
+
+  it('should update a person', async () => {
+    PersonValidator.put.mockReturnValueOnce({
+      error: undefined,
+      value: { name },
+    });
+    const req = { body: { name }, params: { id } };
+    await Person.update(req);
+
+    expect(update).toBeCalledWith(Person.tableName, id, { name });
+  });
+
+  it('should throw error if put payload is invalid', async () => {
+    const error = 'An Error';
+    PersonValidator.put.mockReturnValueOnce({
+      error,
+      value: '',
+    });
+    const req = { body: {}, params: { id } };
+    await expect(Person.update(req)).rejects.toThrowError(error);
   });
 });
