@@ -1,6 +1,6 @@
 ### REST API
 
-# Implementação de CRUD de pessoas e seus contatos
+# Implementation of CRUD to save person and their contacts
 
 # Stack
 - NodeJS
@@ -14,7 +14,7 @@
 # Endpoints
 - ```GET /api/person```
 - ```POST /api/person```
-   - Exemplo de payload
+   - Payload example
 ```json
 {
   "name": "Luiz Filipe",
@@ -27,7 +27,7 @@
 }
 ```
 - ```PUT /api/person([0-9]+)```
-   - Exemplo de payload
+   - Payload example
 ```json
 {
   "name": "Luiz Filipe",
@@ -45,17 +45,14 @@
 ```
 - ```DELETE /api/person/([0-9]+)```
 
-# Como executar em ambiente de desenvolvimento
-- Rodar o comando ```make``` e irá usar docker-compose para iniciar o postgres e a aplicação em modo de desenvolvimento
+# How to run on local environment
+- Run the following command ```make``` and it will use docker-compose to start PostegreSQL and the application in development mode
 
-# Como executar em ambiente de produção
-- Rodar o comando ```make prod``` e irá iniciar o docker com postgres e a aplicação
+# How to run on production environment
+- Run the following command ```make prod``` and it will run the docker with PostgreSQL and the application
 
-# Rodar os teste
-- Rodar ```yarn``` para instalar as depêndencias
-- Rodar ```yarn test``` para executar todos os testes
-- Rodar ```yarn test``` para executar todos os testes
-- Rodar ```yarn dev:coverage``` em implementação dos testes
-- Rodar ```yarn coverage``` irá gerar um diretório chamado  ```coverage``` onde pode ser visto via browser o coverage. Exemplo ```firefox coverage/lcov-report/index.html```
-
-Obs: Neste projeto não foi implementado e garantido 100% de cobertura de testes. Apenas foi implementado uma parte para desmonstrar conhecimento e dado foco em outras questões do projeto.
+# Running the tests
+- Run ```yarn``` to install the dependecies
+- Run ```yarn test``` to execute all the unit tests
+- Run ```yarn dev:coverage``` to help you while you're writing tests
+- Run ```yarn coverage``` it will generate a directory called by  ```coverage``` when you can see via browser the code coverage test. Example ```firefox coverage/lcov-report/index.html```
